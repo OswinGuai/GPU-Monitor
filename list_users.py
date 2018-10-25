@@ -20,6 +20,7 @@ with open(result_file) as result:
     start = i + 3
     processes = lines[start:-1]
     occupy = {}
+    user_number = {}
     for p in processes: 
         m = re.split('\s+',p)
         gpu = m[1]
@@ -30,5 +31,12 @@ with open(result_file) as result:
         if gpu not in occupy:
             occupy[gpu] = []
         occupy[gpu].append(username)
+        if username not in user_number:
+            user_number[username] = 0
+        user_number[username] += 1
+
+    print('GPU is being used by:')
     print(occupy)
+    print('User Occupations:')
+    print(user_number)
 
