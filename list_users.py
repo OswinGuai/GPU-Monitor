@@ -19,6 +19,9 @@ with open(result_file) as result:
         sys.exit()
     start = i + 3
     processes = lines[start:-1]
+    if len(processes) == 0 and 'No running processes found' in processes[0]:
+        print('All GPU are idle!')
+        sys.exit()
     occupy = {}
     user_number = {}
     for p in processes: 
