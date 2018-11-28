@@ -3,6 +3,8 @@ from flask import Blueprint
 from pkgutil import extend_path
 from list_users import count_device
 import os
+import json
+from result_wrapper import *
 
 xlearn_view = Blueprint('',__name__,)
 
@@ -15,10 +17,13 @@ def count_gpu():
     user_number = {}
     for i in range(101,112):
         if i != 107:
-            count_device(i)
-            with open('result_%s.json' % i) as f:
-                result = json.load(f)
-                occupy[i], user_number[i] = result['occupy'], result['user_count']
+            result_file = 'result_%s.json' % i
+            if not os.path.exists(result_file):
+                occupy[i], user_number[i] = {}, {}
+            else:
+                with open(result_file) as f:
+                    result = json.load(f)
+                    occupy[i], user_number[i] = result['occupy'], result['user_count']
             print('finish counting %s.' % i)
     print('All counting DONE!')
     result = {}

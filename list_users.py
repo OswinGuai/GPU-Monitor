@@ -4,10 +4,11 @@ import os
 import pwd
 import json
 
-def count_device(result_file):
+def count_device(result_file, result_json):
+    if not os.path.exists(result_file):
+        return
     with open(result_file) as result:
         lines = result.readlines()
-
         if len(lines) < 10:
             print('error result')
             sys.exit()
@@ -41,9 +42,9 @@ def count_device(result_file):
         result = {}
         result['occupy'] = occupy
         result['user_count'] = user_number
-        with open('result.json', 'w') as fp:
+        with open(result_json, 'w') as fp:
             json.dump(result, fp)
 
 
 if __name__ == '__main__':
-    count_device(sys.argv[1])
+    count_device(sys.argv[1], sys.argv[2])
