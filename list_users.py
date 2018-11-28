@@ -42,6 +42,7 @@ def count_device(result_file, result_json):
         result = {}
         result['occupy'] = occupy
         result['user_count'] = user_number
+        print(result)
         with open(result_json, 'w') as fp:
             json.dump(result, fp)
 

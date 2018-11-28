@@ -1,4 +1,5 @@
 *.txt
 *.json
+*.out
 __pycache__/
 
