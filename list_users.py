@@ -4,8 +4,7 @@ import os
 import pwd
 import json
 
-def count_device():
-    result_file = 'result.txt'
+def count_device(result_file):
     with open(result_file) as result:
         lines = result.readlines()
 
@@ -47,4 +46,4 @@ def count_device():
 
 
 if __name__ == '__main__':
-    count_device()
+    count_device(sys.argv[1])
