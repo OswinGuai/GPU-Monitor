@@ -1,2 +1,4 @@
-result.txt
+*.txt
+*.json
+__pycache__/
 
